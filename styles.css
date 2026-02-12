@@ -82,6 +82,19 @@ body {
   }
 }
 
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
 :root {
   --color-dark: #000000;
   --color-dark-alternate: #131619;
@@ -96,6 +109,7 @@ body {
   --font-family-accent: "Yantramanav", sans-serif;
 
   --input-height: 54px;
+  --header-height: 90px;
 
   --container-width: 1300px;
   --container-padding-x: 15px;
@@ -127,6 +141,8 @@ svg * {
   display: inline-flex;
   align-items: center;
 
+  cursor: pointer;
+
   font-size: 12px;
   font-weight: 700;
 
@@ -147,7 +163,7 @@ svg * {
   text-transform: uppercase;
 }
 
-button:hover {
+.button:hover {
   background-color: var(--color-light-gray);
 }
 
@@ -160,8 +176,8 @@ button:hover {
   flex-direction: column;
   justify-content: center;
 
-  height: 40px;
   width: 40px;
+  aspect-ratio: 1;
 
   padding-left: 8px;
 
@@ -170,7 +186,7 @@ button:hover {
   color: var(--color-light);
 
   border: var(--border);
-  border-radius: var(--border-radius);
+  border-radius: 50%;
 
   background-color: transparent;
 }
@@ -193,6 +209,49 @@ button:hover {
 
 /* burger-button end*/
 
+/* pagination */
+.pagination__list {
+  display: flex;
+}
+
+.pagination__item {
+  display: flex;
+}
+
+.pagination__button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 7px;
+
+  border: none;
+
+  background-color: transparent;
+}
+
+.pagination__button::after {
+  content: "";
+
+  width: 10px;
+  aspect-ratio: 1;
+
+  border: var(--border);
+  border-radius: 50%;
+
+  transition-duration: var(--transition-duration);
+}
+
+.pagination__button_current::after {
+  background-color: var(--color-light);
+}
+
+.pagination__button:not(.pagination__button_current):hover::after {
+  border-color: var(--color-light-gray);
+}
+
+/* pagination end*/
+
 /* components */
 
 body {
@@ -202,7 +261,7 @@ body {
   line-height: 1.75;
 
   color: var(--color-light-gray);
-  background-color: var(--color-dark-alternate);
+  background-color: var(--color-dark);
 }
 
 .container {
@@ -223,14 +282,20 @@ h6 {
   text-transform: uppercase;
 }
 
+/* header */
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  min-height: var(--header-height);
+
   padding-inline: 32px;
 
   column-gap: 20px;
+
+  background-color: var(--color-dark-alternate);
 }
 
 .header__logo {
@@ -253,7 +318,7 @@ h6 {
 
   letter-spacing: 1.2px;
 
-  height: 90px;
+  height: var(--header-height);
 
   column-gap: 7px;
 
@@ -264,8 +329,8 @@ h6 {
 .header-menu__link_current::after {
   content: "";
 
-  height: 5px;
   width: 5px;
+  aspect-ratio: 1;
 
   border-radius: 50%;
 
@@ -278,7 +343,64 @@ h6 {
   column-gap: 40px;
 }
 
+/* header end */
+
+/* banner */
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  min-height: calc(100vh - var(--header-height));
+
+  padding: 36px 70px;
+
+  color: var(--color-light);
+  background-color: var(--color-dark-alternate);
+}
+
+.banner__body {
+  text-transform: uppercase;
+}
+
+.banner__info {
+  display: flex;
+  align-items: end;
+
+  font-size: clamp(16px, 1.56vw, 30px);
+  font-weight: 700;
+
+  line-height: 1.27;
+}
+
+.banner__info::before {
+  content: "";
+
+  width: clamp(60px, 10.1vw, 194px);
+  aspect-ratio: 1;
+
+  margin-right: 30px;
+
+  background: url("./icons/bold-arrow-down-right.svg") center/contain no-repeat;
+}
+
+.banner__title {
+  font-size: min(18.75vw, 360px);
+
+  line-height: 1;
+}
+
+.banner__pagination {
+  display: flex;
+  justify-content: center;
+}
+
+/* banner end */
+
 @media (max-width: 1024px) {
+  /* header */
+
   .header {
     flex-wrap: wrap;
 
@@ -295,6 +417,12 @@ h6 {
 
   .header-menu__link {
     height: 50px;
+  }
+
+  /* banner */
+
+  .banner {
+    row-gap: 10px;
   }
 }
 
@@ -319,5 +447,15 @@ h6 {
 
   .header-actions {
     column-gap: 15px;
+  }
+
+  /* banner */
+
+  .banner__info {
+    margin-bottom: 5px;
+  }
+
+  .banner__info::before {
+    margin-right: 10px;
   }
 }
