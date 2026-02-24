@@ -1,0 +1,183 @@
+@font-face {
+  font-family: "Heebo";
+  src: url("./fonts/Heebo-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Heebo";
+  src: url("./fonts/Heebo-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yantramanav";
+  src: url("./fonts/Yantramanav-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(ul[class]) {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  height: 100%;
+
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+a {
+  color: var(--color-light);
+}
+
+a:hover {
+  color: var(--color-light-gray);
+}
+
+p {
+  margin-block: 0;
+}
+
+p:not([class]):not(:last-child) {
+  margin-bottom: 24px;
+}
+
+svg *[fill] {
+  fill: currentColor;
+}
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+svg * {
+  transition-property: fill, stroke;
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+:root {
+  --color-dark: #000000;
+  --color-dark-alternate: #131619;
+  --color-light: #ffffff;
+  --color-dark-gray: #404040;
+  --color-light-gray: #c4c4c4;
+
+  --border: 1px solid var(--color-light);
+  --border-radius: 30px;
+
+  --font-family-base: "Heebo", sans-serif;
+  --font-family-accent: "Yantramanav", sans-serif;
+
+  --input-height: 54px;
+  --header-height: 90px;
+
+  --container-width: 1300px;
+  --container-padding-x: 15px;
+
+  --transition-duration: 0.2s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  color: var(--color-light);
+}
+
+body {
+  font-family: var(--font-family-base);
+
+  font-size: 16px;
+  line-height: 1.75;
+
+  color: var(--color-light-gray);
+  background-color: var(--color-dark);
+}
+
+.container {
+  max-width: calc(var(--container-width) + (var(--container-padding-x) * 2));
+
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
